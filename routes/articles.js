@@ -11,7 +11,7 @@ router.get('/:id', async (req, res) => {
     /*get our article by id */
     const article = await Article.findById(req.params.id)
     if (article == null) res.redirect('/')
-    res.render('articles/show', { article: artcile })
+    res.render('articles/show', { article: article })
 })
 
 router.post('/', async (req, res) => {
