@@ -37,10 +37,4 @@ articleSchema.pre('validate', function(next) {
     next();
 })
 
-//create a new route for deleting
-router.delete('/:id', async (req, res) => {
-    await Article.findByIdAndDelete(req.params.id)
-    res.redirect('/')
-})
-
 module.exports = mongoose.model('Article', articleSchema)
