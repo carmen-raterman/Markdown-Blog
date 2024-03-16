@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-//adding slugify to convert our title into a url friendly slug to use
-const slugify = require('slugify')
 //adding marked to create markdown and turn it into html
 const marked = require('marked')
+//adding slugify to convert our title into a url friendly slug to use
+const slugify = require('slugify')
 //adding purifier which returns a function
 const createDomPurify = require('dompurify')
 //we put this in brackets because we only want the JSDOM portion of what is returns
