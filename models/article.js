@@ -28,12 +28,19 @@ const articleSchema = new mongoose.Schema({
 })
 
 //some before attributes
-articleSchema.pre('validate', function() {
+articleSchema.pre('validate', function(next) {
     if (this.title) {
         this.slug = slugify(this.title, { lower: true, strict: true }) //this step makes the title lowercase and also removes any special characters (like a colon) that might be in the title
         //we set this up to create a slug from our title for every time we validate
     }
 
-    next()
+    next();
 })
+
+//create a new route for deleting
+router.delete('/:id', async (req, res) => {
+    await Article.findByIdAndDelete(req.params.id)
+    res.redirect('/')
+})
+
 module.exports = mongoose.model('Article', articleSchema)

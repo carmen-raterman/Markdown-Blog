@@ -7,9 +7,9 @@ router.get('/new', (req, res) => {
     res.render('articles/new', { article: new Article() })
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:slug', async (req, res) => {
     /*get our article by id */
-    const article = await Article.findById(req.params.id)
+    const article = await Article.findOne({ slug: req.params.slug })
     if (article == null) res.redirect('/')
     res.render('articles/show', { article: article })
 })
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
     /* be sure to add a step to save the article as an async */
     try{
         article = await article.save()
-        res.redirect(`/articles/${article.id}`)
+        res.redirect(`/articles/${article.slug}`)
     } catch(e) {
         /* trouble finding markdown error */
         console.log(e)
